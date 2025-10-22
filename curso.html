@@ -23,11 +23,11 @@
 
     body {
       display: flex;
-      height: 100vh;
+      min-height: 100vh;
       font-family: "Poppins", sans-serif;
       background-color: var(--gris-oscuro);
       color: var(--blanco);
-      overflow: hidden;
+      overflow-x: hidden; /* ✅ Permite scroll vertical */
     }
 
     /* --- SIDEBAR --- */
@@ -144,7 +144,6 @@
       text-align: center;
     }
 
-    /* 🎥 SOLO EL VIDEO, SIN SOBRANTES */
     .video-container {
       display: flex;
       justify-content: center;
@@ -164,9 +163,9 @@
       width: 100%;
       height: 100%;
       border: none;
-      transform: scale(1.05) translateY(-3px); /* Zoom y centrado */
+      transform: scale(1.05) translateY(-3px);
       transform-origin: center center;
-      clip-path: inset(3px 0 3px 0 round 15px); 
+      clip-path: inset(3px 0 3px 0 round 15px);
     }
 
     /* --- BOTÓN --- */
@@ -196,6 +195,7 @@
       border-radius: 10px;
     }
 
+    /* ✅ Tablets */
     @media (max-width: 900px) {
       body {
         flex-direction: column;
@@ -205,7 +205,10 @@
         width: 100%;
         height: auto;
         flex-direction: row;
-        overflow-x: scroll;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 15px;
+        padding: 15px;
       }
 
       .content {
@@ -213,11 +216,43 @@
       }
 
       .video-container {
-        height: 300px;
+        height: 320px;
       }
 
-      .video-container iframe {
-        transform: scale(1.2) translateY(-3px);
+      .video-title {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* ✅ Móviles */
+    @media (max-width: 600px) {
+      .sidebar {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .logo-container img {
+        width: 100px;
+      }
+
+      .sidebar h2 {
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .video-title {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      .video-container {
+        height: 220px;
+        border-radius: 12px;
+      }
+
+      .next-btn {
+        padding: 10px 24px;
+        font-size: 0.9rem;
       }
     }
   </style>
