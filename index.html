@@ -3,319 +3,186 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Curso | PedidosYa Partners</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Centro de Aprendizaje - Partners PedidosYa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --rosa: #FA0050;
-      --gris-oscuro: #111217;
-      --gris-claro: #1C1E24;
+      --celeste: #61C8FA;
       --blanco: #FFFFFF;
-      --gris-bloqueado: #555;
+      --oscuro: #100423;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-      display: flex;
-      height: 100vh;
+      margin: 0;
       font-family: "Poppins", sans-serif;
-      background-color: var(--gris-oscuro);
+      background-color: var(--blanco);
+      overflow-x: hidden;
+    }
+
+    /* ---------------- HERO ---------------- */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 100vh;
+      background: linear-gradient(125deg, var(--rosa) 50%, var(--celeste) 50%);
+      padding: 0 8%;
       color: var(--blanco);
+      position: relative;
       overflow: hidden;
     }
 
-    /* --- SIDEBAR --- */
-    .sidebar {
-      width: 360px;
-      background-color: var(--gris-claro);
-      padding: 30px 25px;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      overflow-y: auto;
-      box-shadow: 6px 0 15px rgba(0,0,0,0.25);
-    }
-
-    .logo-container {
-      text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding-bottom: 20px;
-    }
-
-    .logo-container img {
-      width: 130px;
-      filter: brightness(1000%);
-    }
-
-    .sidebar h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .timeline {
-      position: relative;
-      margin-top: 10px;
-    }
-
-    .timeline::before {
-      content: "";
+    /* Logo centrado */
+    .logo {
       position: absolute;
-      top: 0;
-      left: 18px;
-      width: 2px;
-      height: 100%;
-      background-color: rgba(255,255,255,0.15);
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 170px;
+      z-index: 3;
     }
 
-    .module {
-      position: relative;
-      display: flex;
-      align-items: center;
-      margin-bottom: 25px;
-      padding-left: 40px;
-      transition: 0.3s ease;
-    }
-
-    .module.locked {
-      color: var(--gris-bloqueado);
-      cursor: not-allowed;
-    }
-
-    .module.locked i {
-      color: var(--gris-bloqueado);
-    }
-
-    .module.active {
-      color: var(--rosa);
-      transform: translateX(4px);
-    }
-
-    .module::before {
-      content: attr(data-step);
-      position: absolute;
-      left: 5px;
-      top: 0;
-      width: 25px;
-      height: 25px;
-      background-color: var(--gris-oscuro);
-      border: 2px solid var(--rosa);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      color: var(--blanco);
-    }
-
-    .module i {
-      margin-right: 10px;
-      color: var(--rosa);
-    }
-
-    .duration {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.5);
-      margin-top: 2px;
-    }
-
-    /* --- CONTENIDO --- */
-    .content {
+    /* Texto principal */
+    .hero-content {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: #f7f7f7;
-      padding: 30px 50px;
+      z-index: 2;
+      animation: fadeInLeft 1s ease;
     }
 
-    .video-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--gris-oscuro);
-      margin-bottom: 15px;
-      text-align: center;
+    .hero-content h1 {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     }
 
-    /* 🎥 SOLO EL VIDEO, SIN SOBRANTES */
-    .video-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: var(--rosa);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      max-width: 880px;
-      width: 100%;
-      height: 500px;
-      margin-bottom: 25px;
-      position: relative;
-    }
-
-    .video-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      transform: scale(1.05) translateY(-3px); /* Zoom y centrado */
-      transform-origin: center center;
-      clip-path: inset(3px 0 3px 0 round 15px); 
-    }
-
-    /* --- BOTÓN --- */
-    .next-btn {
-      background-color: var(--rosa);
+    .hero-content p {
+      font-size: 1.15rem;
+      max-width: 540px;
+      margin-bottom: 35px;
       color: var(--blanco);
-      padding: 14px 36px;
+      text-align: justify;
+    }
+
+    /* BOTÓN PRINCIPAL */
+    .btn-primary {
+      background-color: var(--blanco);
+      color: var(--rosa);
+      padding: 14px 35px;
+      border-radius: 50px;
       border: none;
-      border-radius: 10px;
+      font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.3s ease;
-      box-shadow: 0 5px 12px rgba(250, 0, 80, 0.3);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      display: inline-block;
     }
 
-    .next-btn:hover {
-      background-color: #ff3377;
+    .btn-primary:hover {
+      background-color: var(--celeste);
+      color: var(--blanco);
       transform: scale(1.05);
     }
 
-    ::-webkit-scrollbar {
-      width: 6px;
+    /* Imagen */
+    .hero-image {
+      flex: 1;
+      text-align: right;
+      z-index: 1;
+      animation: fadeInRight 1.5s ease;
     }
 
-    ::-webkit-scrollbar-thumb {
-      background-color: var(--rosa);
-      border-radius: 10px;
+    .hero-image img {
+      max-width: 340px;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+      transition: transform 0.3s ease;
     }
 
+    .hero-image img:hover {
+      transform: translateY(-5px) scale(1.03);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--oscuro);
+      color: var(--blanco);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* Animaciones */
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Responsive */
     @media (max-width: 900px) {
-      body {
+      .hero {
         flex-direction: column;
+        text-align: center;
+        padding-top: 100px;
+        background: linear-gradient(180deg, var(--rosa) 50%, var(--celeste) 50%);
       }
 
-      .sidebar {
-        width: 100%;
-        height: auto;
-        flex-direction: row;
-        overflow-x: scroll;
+      .hero-image {
+        margin-top: 40px;
+        text-align: center;
       }
 
-      .content {
-        padding: 20px;
+      .hero-image img {
+        max-width: 260px;
       }
 
-      .video-container {
-        height: 300px;
+      .logo {
+        top: 20px;
+        width: 130px;
       }
 
-      .video-container iframe {
-        transform: scale(1.2) translateY(-3px);
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-content p {
+        text-align: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="logo-container">
-      <img src="logo-blanco.png" alt="Logo PedidosYa">
+  <!-- LOGO -->
+  <img src="logo-blanco.png" alt="PedidosYa Logo" class="logo" />
+
+  <!-- HERO SECTION -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Centro de aprendizaje<br>para Partners</h1>
+      <p>
+        Accede a cursos, tutoriales y recursos interactivos diseñados para ayudarte a gestionar tu negocio 
+        de forma eficiente, optimizar tus pedidos y potenciar tu crecimiento dentro de la plataforma.
+      </p>
+      <a href="curso.html" class="btn-primary">Comenzar capacitación</a>
     </div>
 
-    <h2>Clases del curso</h2>
-    <div class="timeline">
-      <div class="module active" data-step="1" data-url="https://drive.google.com/file/d/1zTe4gvzkVi3nvjNnZ4kcVNTFkDvokxFu/preview" data-title="Confirmación y proceso de órdenes">
-        <i class="fa-solid fa-play"></i>
-        <div>
-          <div>Confirmación y proceso de órdenes</div>
-          <div class="duration">01:49 minutos</div>
-        </div>
-      </div>
-
-      <div class="module locked" data-step="2" data-url="https://drive.google.com/file/d/1-TKvhETsxLSqd3nZKo3hm7-iN45HXky9/preview" data-title="Manejo de inventario">
-        <i class="fa-solid fa-play"></i>
-        <div>
-          <div>Manejo de inventario</div>
-          <div class="duration">00:59 minutos</div>
-        </div>
-      </div>
-
-      <div class="module locked" data-step="3" data-url="https://drive.google.com/file/d/17nZfrCmZr4dFWm0mHatrfqUnDtp7HwHZ/preview" data-title="Cambiar estado de tu local">
-        <i class="fa-solid fa-play"></i>
-        <div>
-          <div>Cambiar estado de tu local</div>
-          <div class="duration">00:47 minutos</div>
-        </div>
-      </div>
-
-      <div class="module locked" data-step="4" data-url="https://drive.google.com/file/d/1KZdZqOQkNZINJrZwfeHhk7gm8-G7viPt/preview" data-title="Local con alta demanda">
-        <i class="fa-solid fa-play"></i>
-        <div>
-          <div>Local con alta demanda</div>
-          <div class="duration">00:42 minutos</div>
-        </div>
-      </div>
-
-      <div class="module locked" data-step="5" data-url="https://drive.google.com/file/d/1_36P-2DQ_O7hvSx1JG8l-r8uyQ3we6xq/preview" data-title="Contacto con soporte técnico">
-        <i class="fa-solid fa-play"></i>
-        <div>
-          <div>Contacto con soporte técnico</div>
-          <div class="duration">00:24 minutos</div>
-        </div>
-      </div>
+    <div class="hero-image">
+      <img src="mockup.png" alt="App PedidosYa en teléfono" />
     </div>
-  </aside>
-
-  <!-- CONTENIDO -->
-  <main class="content">
-    <div class="video-title" id="videoTitle">Confirmación y proceso de órdenes</div>
-    <div class="video-container">
-      <iframe id="videoFrame"
-        src="https://drive.google.com/file/d/1zTe4gvzkVi3nvjNnZ4kcVNTFkDvokxFu/preview"
-        allow="autoplay" allowfullscreen>
-      </iframe>
-    </div>
-
-    <button class="next-btn" onclick="goToQuiz()">Siguiente</button>
-  </main>
-
-  <script>
-    let currentModule = parseInt(localStorage.getItem("currentModule")) || 1;
-
-    function updateModules() {
-      const modules = document.querySelectorAll(".module");
-      modules.forEach((mod, index) => {
-        const step = index + 1;
-        if (step <= currentModule) {
-          mod.classList.remove("locked");
-          mod.onclick = () => changeVideo(mod);
-        } else {
-          mod.classList.add("locked");
-          mod.onclick = null;
-        }
-      });
-    }
-
-    function changeVideo(mod) {
-      document.getElementById("videoFrame").src = mod.dataset.url;
-      document.getElementById("videoTitle").textContent = mod.dataset.title;
-      document.querySelectorAll(".module").forEach(m => m.classList.remove("active"));
-      mod.classList.add("active");
-    }
-
-    function goToQuiz() {
-      window.location.href = "quiz.html";
-    }
-
-    updateModules();
-  </script>
+  </div>
 </body>
 </html>
