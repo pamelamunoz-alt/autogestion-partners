@@ -23,11 +23,11 @@
 
     body {
       display: flex;
-      min-height: 100vh; /* 🔧 Antes: height: 100vh */
+      height: 100vh;
       font-family: "Poppins", sans-serif;
       background-color: var(--gris-oscuro);
       color: var(--blanco);
-      overflow-x: hidden; /* 🔧 Evita desplazamiento horizontal */
+      overflow: hidden;
     }
 
     /* --- SIDEBAR --- */
@@ -42,9 +42,87 @@
       box-shadow: 6px 0 15px rgba(0,0,0,0.25);
     }
 
+    .logo-container {
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 20px;
+    }
+
     .logo-container img {
       width: 130px;
       filter: brightness(1000%);
+    }
+
+    .sidebar h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 18px;
+      width: 2px;
+      height: 100%;
+      background-color: rgba(255,255,255,0.15);
+    }
+
+    .module {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-left: 40px;
+      transition: 0.3s ease;
+    }
+
+    .module.locked {
+      color: var(--gris-bloqueado);
+      cursor: not-allowed;
+    }
+
+    .module.locked i {
+      color: var(--gris-bloqueado);
+    }
+
+    .module.active {
+      color: var(--rosa);
+      transform: translateX(4px);
+    }
+
+    .module::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 5px;
+      top: 0;
+      width: 25px;
+      height: 25px;
+      background-color: var(--gris-oscuro);
+      border: 2px solid var(--rosa);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--blanco);
+    }
+
+    .module i {
+      margin-right: 10px;
+      color: var(--rosa);
+    }
+
+    .duration {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
     }
 
     /* --- CONTENIDO --- */
@@ -66,6 +144,7 @@
       text-align: center;
     }
 
+    /* 🎥 SOLO EL VIDEO, SIN SOBRANTES */
     .video-container {
       display: flex;
       justify-content: center;
@@ -85,11 +164,12 @@
       width: 100%;
       height: 100%;
       border: none;
-      transform: scale(1.05) translateY(-3px);
+      transform: scale(1.05) translateY(-3px); /* Zoom y centrado */
       transform-origin: center center;
-      clip-path: inset(3px 0 3px 0 round 15px);
+      clip-path: inset(3px 0 3px 0 round 15px); 
     }
 
+    /* --- BOTÓN --- */
     .next-btn {
       background-color: var(--rosa);
       color: var(--blanco);
@@ -107,7 +187,15 @@
       transform: scale(1.05);
     }
 
-    /* 🔧 Ajuste para tablets */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--rosa);
+      border-radius: 10px;
+    }
+
     @media (max-width: 900px) {
       body {
         flex-direction: column;
@@ -117,9 +205,7 @@
         width: 100%;
         height: auto;
         flex-direction: row;
-        overflow-x: auto;
-        gap: 15px;
-        padding: 15px;
+        overflow-x: scroll;
       }
 
       .content {
@@ -127,41 +213,23 @@
       }
 
       .video-container {
-        height: 320px;
-      }
-    }
-
-    /* 🔧 Ajuste para teléfonos pequeños */
-    @media (max-width: 600px) {
-      .sidebar {
-        flex-wrap: wrap;
-        justify-content: center;
+        height: 300px;
       }
 
-      .video-title {
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-      }
-
-      .video-container {
-        height: 230px;
-        border-radius: 12px;
-      }
-
-      .next-btn {
-        padding: 10px 24px;
-        font-size: 0.9rem;
+      .video-container iframe {
+        transform: scale(1.2) translateY(-3px);
       }
     }
   </style>
 </head>
-
 <body>
+
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="logo-container">
       <img src="logo-blanco.png" alt="Logo PedidosYa">
     </div>
+
     <h2>Clases del curso</h2>
     <div class="timeline">
       <div class="module active" data-step="1" data-url="https://drive.google.com/file/d/1zTe4gvzkVi3nvjNnZ4kcVNTFkDvokxFu/preview" data-title="Confirmación y proceso de órdenes">
@@ -171,7 +239,38 @@
           <div class="duration">01:49 minutos</div>
         </div>
       </div>
-      <!-- ... resto igual ... -->
+
+      <div class="module locked" data-step="2" data-url="https://drive.google.com/file/d/1-TKvhETsxLSqd3nZKo3hm7-iN45HXky9/preview" data-title="Manejo de inventario">
+        <i class="fa-solid fa-play"></i>
+        <div>
+          <div>Manejo de inventario</div>
+          <div class="duration">00:59 minutos</div>
+        </div>
+      </div>
+
+      <div class="module locked" data-step="3" data-url="https://drive.google.com/file/d/17nZfrCmZr4dFWm0mHatrfqUnDtp7HwHZ/preview" data-title="Cambiar estado de tu local">
+        <i class="fa-solid fa-play"></i>
+        <div>
+          <div>Cambiar estado de tu local</div>
+          <div class="duration">00:47 minutos</div>
+        </div>
+      </div>
+
+      <div class="module locked" data-step="4" data-url="https://drive.google.com/file/d/1KZdZqOQkNZINJrZwfeHhk7gm8-G7viPt/preview" data-title="Local con alta demanda">
+        <i class="fa-solid fa-play"></i>
+        <div>
+          <div>Local con alta demanda</div>
+          <div class="duration">00:42 minutos</div>
+        </div>
+      </div>
+
+      <div class="module locked" data-step="5" data-url="https://drive.google.com/file/d/1_36P-2DQ_O7hvSx1JG8l-r8uyQ3we6xq/preview" data-title="Contacto con soporte técnico">
+        <i class="fa-solid fa-play"></i>
+        <div>
+          <div>Contacto con soporte técnico</div>
+          <div class="duration">00:24 minutos</div>
+        </div>
+      </div>
     </div>
   </aside>
 
@@ -184,11 +283,13 @@
         allow="autoplay" allowfullscreen>
       </iframe>
     </div>
+
     <button class="next-btn" onclick="goToQuiz()">Siguiente</button>
   </main>
 
   <script>
     let currentModule = parseInt(localStorage.getItem("currentModule")) || 1;
+
     function updateModules() {
       const modules = document.querySelectorAll(".module");
       modules.forEach((mod, index) => {
@@ -202,15 +303,18 @@
         }
       });
     }
+
     function changeVideo(mod) {
       document.getElementById("videoFrame").src = mod.dataset.url;
       document.getElementById("videoTitle").textContent = mod.dataset.title;
       document.querySelectorAll(".module").forEach(m => m.classList.remove("active"));
       mod.classList.add("active");
     }
+
     function goToQuiz() {
       window.location.href = "quiz.html";
     }
+
     updateModules();
   </script>
 </body>
