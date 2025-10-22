@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz - Manejo de inventario | PedidosYa Partners</title>
+  <title>Quiz - Confirmación y proceso de órdenes | PedidosYa Partners</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -133,48 +133,48 @@
 </head>
 <body>
 
-  <h1>Quiz: Manejo de inventario</h1>
+  <h1>Quiz: Confirmación y proceso de órdenes</h1>
 
   <div class="quiz-container">
     <form id="quizForm">
       <div class="question">
-        <h3>1. ¿Qué debes hacer si un producto del pedido está fuera de stock?</h3>
-        <label><input type="radio" name="q1" value="a">Rechazar el pedido inmediatamente</label>
-        <label><input type="radio" name="q1" value="b">Llamar al cliente para ofrecerle un reemplazo del mismo valor</label>
-        <label><input type="radio" name="q1" value="c">Esperar que el motorista lo cancele</label>
-        <label><input type="radio" name="q1" value="d">Ignorar la orden hasta que expire</label>
+        <h3>1. ¿Qué debes hacer al recibir una nueva orden en el POS?</h3>
+        <label><input type="radio" name="q1" value="a">Ignorarla hasta que termine el contador</label>
+        <label><input type="radio" name="q1" value="b">Revisar los detalles del pedido y presionar “Aceptar pedido”</label>
+        <label><input type="radio" name="q1" value="c">Esperar a que el motorista confirme</label>
+        <label><input type="radio" name="q1" value="d">Marcarla como “Listo” inmediatamente</label>
       </div>
 
       <div class="question">
-        <h3>2. ¿Qué ocurre si el cliente acepta el reemplazo del producto?</h3>
-        <label><input type="radio" name="q2" value="a">Debes cancelar la orden de todos modos</label>
-        <label><input type="radio" name="q2" value="b">Puedes continuar con la orden y completar el pedido</label>
-        <label><input type="radio" name="q2" value="c">El pedido se marca como rechazado</label>
-        <label><input type="radio" name="q2" value="d">El sistema genera una nueva orden</label>
+        <h3>2. ¿Qué sucede si no aceptas la orden dentro del minuto establecido?</h3>
+        <label><input type="radio" name="q2" value="a">Se pospone automáticamente</label>
+        <label><input type="radio" name="q2" value="b">El cliente debe volver a pedir</label>
+        <label><input type="radio" name="q2" value="c">Se marca como completada</label>
+        <label><input type="radio" name="q2" value="d">Se cancela automáticamente</label>
       </div>
 
       <div class="question">
-        <h3>3. ¿Desde qué apartado del POS puedes actualizar tu inventario?</h3>
-        <label><input type="radio" name="q3" value="a">Desde el apartado “Órdenes aceptadas”</label>
-        <label><input type="radio" name="q3" value="b">Desde el apartado “Menú”</label>
-        <label><input type="radio" name="q3" value="c">Desde el historial de ventas</label>
-        <label><input type="radio" name="q3" value="d">Desde el panel de soporte</label>
+        <h3>3. ¿Dónde puedes comunicarte con Soporte Técnico si tienes problemas con el POS?</h3>
+        <label><input type="radio" name="q3" value="a">En la sección “Ayuda en línea”</label>
+        <label><input type="radio" name="q3" value="b">En el menú principal</label>
+        <label><input type="radio" name="q3" value="c">En el apartado “Órdenes aceptadas”</label>
+        <label><input type="radio" name="q3" value="d">En la opción “Aceptar pedido”</label>
       </div>
 
       <div class="question">
-        <h3>4. ¿Qué sucede si desactivas un producto solo por hoy?</h3>
-        <label><input type="radio" name="q4" value="a">El producto se elimina del sistema permanentemente</label>
-        <label><input type="radio" name="q4" value="b">El sistema lo reactivará automáticamente al día siguiente</label>
-        <label><input type="radio" name="q4" value="c">El producto desaparece del menú para siempre</label>
-        <label><input type="radio" name="q4" value="d">Debes activarlo manualmente cada vez</label>
+        <h3>4. ¿Qué debes hacer al finalizar la preparación del pedido?</h3>
+        <label><input type="radio" name="q4" value="a">Esperar a que el tiempo se agote</label>
+        <label><input type="radio" name="q4" value="b">Cancelar el pedido</label>
+        <label><input type="radio" name="q4" value="c">Marcar el pedido como “Listo”</label>
+        <label><input type="radio" name="q4" value="d">Notificar al motorista por teléfono</label>
       </div>
 
       <div class="question">
-        <h3>5. ¿Por qué es importante mantener tu stock actualizado en el POS?</h3>
-        <label><input type="radio" name="q5" value="a">Para evitar rechazos y no perder ventas</label>
-        <label><input type="radio" name="q5" value="b">Para aumentar los precios automáticamente</label>
-        <label><input type="radio" name="q5" value="c">Para que los riders ganen más pedidos</label>
-        <label><input type="radio" name="q5" value="d">Para modificar los tiempos de entrega</label>
+        <h3>5. ¿Para qué sirve enviar un pedido de prueba desde el menú principal?</h3>
+        <label><input type="radio" name="q5" value="a">Para probar el sistema y aprender el flujo de órdenes</label>
+        <label><input type="radio" name="q5" value="b">Para recibir descuentos</label>
+        <label><input type="radio" name="q5" value="c">Para registrar más ventas</label>
+        <label><input type="radio" name="q5" value="d">Para contactar al soporte</label>
       </div>
 
       <button type="button" id="submitBtn" class="btn" onclick="checkQuiz()">Enviar respuestas</button>
@@ -182,73 +182,77 @@
 
     <div id="result"></div>
 
-    <button id="nextModuleBtn" onclick="goToNextModule()">
+    <button id="nextModuleBtn" onclick="window.location.href='curso2.html'">
       Ir al siguiente vídeo
     </button>
   </div>
 
   <script>
-    const correctAnswers = {
-      q1: "b", 
-      q2: "b", 
-      q3: "b", 
-      q4: "b", 
-      q5: "a"  
-    };
+  // ✅ Clave de respuestas correctas
+  const correctAnswers = {
+    q1: "b", // Aceptar pedido
+    q2: "d", // Se cancela automáticamente
+    q3: "a", // Ayuda en línea
+    q4: "c", // Marcar "Listo"
+    q5: "a"  // Pedido de prueba
+  };
 
-    function getAnswer(name) {
-      const el = document.querySelector(`input[name="${name}"]:checked`);
-      return el ? el.value : null;
+  function getAnswer(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : null;
+  }
+
+  function checkQuiz() {
+    const keys = Object.keys(correctAnswers);
+    const answers = {};
+    let missing = [];
+
+    // Leer respuestas una por una, sin RadioNodeList.value
+    for (const k of keys) {
+      const v = getAnswer(k);
+      if (v === null) missing.push(k);
+      answers[k] = v;
     }
 
-    function checkQuiz() {
-      const keys = Object.keys(correctAnswers);
-      const answers = {};
-      let missing = [];
+    if (missing.length) {
+      alert("Por favor, responde todas las preguntas antes de enviar.");
+      return;
+    }
 
-      for (const k of keys) {
-        const v = getAnswer(k);
-        if (v === null) missing.push(k);
-        answers[k] = v;
-      }
-
-      if (missing.length) {
-        alert("Por favor, responde todas las preguntas antes de enviar.");
-        return;
-      }
-
-      let score = 0;
-      const wrong = [];
-      for (const k of keys) {
-        if (answers[k] === correctAnswers[k]) score++;
-        else wrong.push(k);
-      }
-
-      const total = keys.length;
-      const result = document.getElementById("result");
-      const nextBtn = document.getElementById("nextModuleBtn");
-      const submitBtn = document.getElementById("submitBtn");
-
-      if (wrong.length) {
-        const wrongList = wrong.map(k => Number(k.slice(1))).join(", ");
-        result.textContent = `Tu puntaje: ${score} / ${total} — Revisa las preguntas: ${wrongList}.`;
-        nextBtn.style.display = "none";
-        submitBtn.style.display = "block";
+    // Calcular score y recolectar incorrectas
+    let score = 0;
+    const wrong = [];
+    for (const k of keys) {
+      if (answers[k] === correctAnswers[k]) {
+        score++;
       } else {
-        result.textContent = `Tu puntaje: ${score} / ${total}`;
-        submitBtn.style.display = "none";
-        nextBtn.style.display = "block";
-        nextBtn.style.animation = "fadeIn 0.8s ease forwards";
+        wrong.push(k);
       }
-
-      localStorage.setItem("quiz2_score", score);
     }
 
-    function goToNextModule() {
-      localStorage.setItem("currentModule", 3);
-      window.location.href = "curso3.html";
-    }
-  </script>
+    // Mostrar resultado
+    const total = keys.length;
+    const result = document.getElementById("result");
+    const nextBtn = document.getElementById("nextModuleBtn");
+    const submitBtn = document.getElementById("submitBtn");
 
+    if (wrong.length) {
+      // Texto bonito con qué preguntas estuvieron mal (1-indexadas)
+      const wrongList = wrong.map(k => Number(k.slice(1))).sort((a,b)=>a-b).join(", ");
+      result.textContent = `Tu puntaje: ${score} / ${total} — Revisa las preguntas: ${wrongList}.`;
+      nextBtn.style.display = "none";
+      submitBtn.style.display = "block";
+    } else {
+      result.textContent = `Tu puntaje: ${score} / ${total}`;
+      // Desbloquear siguiente módulo
+      submitBtn.style.display = "none";
+      nextBtn.style.display = "block";
+      nextBtn.style.animation = "fadeIn 0.8s ease forwards";
+    }
+
+    // Guardar score (por si lo usas después)
+    localStorage.setItem("quiz1_score", score);
+  }
+</script>
 </body>
 </html>
