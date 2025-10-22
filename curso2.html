@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Curso | PedidosYa Partners</title>
+  <title>Curso 2 | PedidosYa Partners</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -19,11 +19,11 @@
 
     body {
       display: flex;
-      height: 100vh;
+      min-height: 100vh;
       font-family: "Poppins", sans-serif;
       background-color: var(--gris-oscuro);
       color: var(--blanco);
-      overflow: hidden;
+      overflow-x: hidden; /* ✅ permite scroll vertical */
     }
 
     /* --- SIDEBAR --- */
@@ -153,6 +153,9 @@
       height: 500px;
       margin-bottom: 25px;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .video-container iframe {
@@ -184,12 +187,51 @@
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-thumb { background-color: var(--rosa); border-radius: 10px; }
 
+    /* ✅ Tablets */
     @media (max-width: 900px) {
       body { flex-direction: column; }
-      .sidebar { width: 100%; height: auto; flex-direction: row; overflow-x: scroll; }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 15px;
+        padding: 15px;
+      }
       .content { padding: 20px; }
-      .video-container { height: 300px; }
-      .video-container iframe { transform: scale(1.1) translateY(-3px); }
+      .video-container { height: 320px; }
+      .video-title { font-size: 1.2rem; }
+    }
+
+    /* ✅ Móviles */
+    @media (max-width: 600px) {
+      .sidebar {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .logo-container img { width: 100px; }
+
+      .sidebar h2 {
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .video-title {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      .video-container {
+        height: 220px;
+        border-radius: 12px;
+      }
+
+      .next-btn {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -266,7 +308,6 @@
       const modules = document.querySelectorAll(".module");
       modules.forEach((mod, index) => {
         const step = index + 1;
-
         if (step <= currentModule) {
           mod.classList.remove("locked");
           mod.classList.add("completed");
