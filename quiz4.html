@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz - Contacto con soporte técnico | PedidosYa Partners</title>
+  <title>Quiz - Local con alta demanda | PedidosYa Partners</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -56,7 +56,10 @@
       transition: 0.3s;
     }
 
-    label:hover { background-color: var(--celeste); color: var(--blanco); }
+    label:hover {
+      background-color: var(--celeste);
+      color: var(--blanco);
+    }
 
     input[type="radio"] { margin-right: 8px; }
 
@@ -101,32 +104,32 @@
 </head>
 <body>
 
-  <h1>Quiz: Contacto con soporte técnico</h1>
+  <h1>Quiz: Local con alta demanda</h1>
 
   <div class="quiz-container">
     <form id="quizForm">
       <div class="question">
-        <h3>1. ¿Dónde puedes encontrar ayuda o soporte si tienes dudas sobre el sistema?</h3>
-        <label><input type="radio" name="q1" value="a">En el centro de soporte con preguntas frecuentes y tutoriales</label>
-        <label><input type="radio" name="q1" value="b">En el menú de pedidos, revisando las opciones disponibles dentro del panel principal</label>
-        <label><input type="radio" name="q1" value="c">lamando directamente al motorista asignado para solicitar información</label>
-        <label><input type="radio" name="q1" value="d">Esperando que el sistema realice una actualización automática</label>
+        <h3>1. ¿Qué debes hacer si hay demasiada demanda en tu local y no puedes aceptar pedidos?</h3>
+        <label><input type="radio" name="q1" value="a">Esperar a que los pedidos se cancelen de forma automática por el sistema</label>
+        <label><input type="radio" name="q1" value="b">Hacer clic en “Rechazar pedido” y seleccionar el motivo correspondiente</label>
+        <label><input type="radio" name="q1" value="c">Cerrar el local definitivamente para evitar recibir más pedidos</label>
+        <label><input type="radio" name="q1" value="d">Llamar directamente al cliente</label>
       </div>
 
       <div class="question">
-        <h3>2. ¿Qué ofrece el chat de atención personalizada?</h3>
-        <label><input type="radio" name="q2" value="a">Funciona en horarios determinados y brinda asistencia según la disponibilidad</label>
-        <label><input type="radio" name="q2" value="b">Solo funciona en horarios limitados</label>
-        <label><input type="radio" name="q2" value="c">Envía recordatorios de pedidos</label>
-        <label><input type="radio" name="q2" value="d">Permite contactar con soporte cuando lo necesites</label>
+        <h3>2. ¿Qué consecuencias puede tener rechazar pedidos frecuentemente?</h3>
+        <label><input type="radio" name="q2" value="a">Aumentar la visibilidad del local</label>
+        <label><input type="radio" name="q2" value="b">Desactivar el POS automáticamente</label>
+        <label><input type="radio" name="q2" value="c">Provocar demoras en la plataforma y afectar la asignación normal de los pedido</label>
+        <label><input type="radio" name="q2" value="d">Afectar la experiencia del cliente y generar un posible cargo</label>
       </div>
 
       <div class="question">
-        <h3>3. ¿Por qué es útil el centro de soporte para los partners?</h3>
-        <label><input type="radio" name="q3" value="a">Porque permite controlar el cierre del local y administrar horarios de atención</label>
-        <label><input type="radio" name="q3" value="b">Porque reemplaza a los motoristas</label>
-        <label><input type="radio" name="q3" value="c">Porque permite resolver dudas, aprender y optimizar la gestión del local</label>
-        <label><input type="radio" name="q3" value="d">Porque genera descuentos</label>
+        <h3>3. ¿Qué puedes hacer después de rechazar un pedido para controlar la demanda?</h3>
+        <label><input type="radio" name="q3" value="a">Marcarte como ocupado o cerrar temporalmente el local</label>
+        <label><input type="radio" name="q3" value="b">Eliminar todos los productos del menú</label>
+        <label><input type="radio" name="q3" value="c">No hacer nada y que se rechacen todos los pedidos</label>
+        <label><input type="radio" name="q3" value="d">Apagar el sistema POS</label>
       </div>
 
       <button type="button" class="btn" id="submitBtn" onclick="checkQuiz()">Enviar respuestas</button>
@@ -134,14 +137,14 @@
 
     <div id="result"></div>
 
-    <button id="nextModuleBtn" onclick="finishCourse()">Finalizar curso</button>
+    <button id="nextModuleBtn" onclick="goToNextModule()">Ir al siguiente módulo</button>
   </div>
 
   <script>
     const correctAnswers = {
-      q1: "a", 
+      q1: "b", 
       q2: "d", 
-      q3: "c"  
+      q3: "a"  
     };
 
     function getAnswer(name) {
@@ -177,11 +180,12 @@
         nextBtn.style.display = "block";
       }
 
-      localStorage.setItem("quiz5_score", score);
+      localStorage.setItem("quiz4_score", score);
     }
 
-    function finishCourse() {
-      window.location.href = "formulario.html";
+    function goToNextModule() {
+      localStorage.setItem("currentModule", 5);
+      window.location.href = "curso5.html";
     }
   </script>
 
