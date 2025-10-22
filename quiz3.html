@@ -110,42 +110,42 @@
     <form id="quizForm">
       <div class="question">
         <h3>1. ¿Desde dónde puedes ver si tu local está abierto o cerrado?</h3>
-        <label><input type="radio" name="q1" value="a">Desde la pantalla principal del sistema de recepción</label>
-        <label><input type="radio" name="q1" value="b">Desde la sección de ayuda</label>
-        <label><input type="radio" name="q1" value="c">Desde el apartado de ventas</label>
-        <label><input type="radio" name="q1" value="d">Desde el historial de pedidos</label>
+        <label><input type="radio" name="q1" value="a">Desde el apartado de ventas y pedidos activos</label>
+        <label><input type="radio" name="q1" value="b">Desde la pantalla principal del sistema de recepción</label>
+        <label><input type="radio" name="q1" value="c">Desde la sección de ayuda y soporte general</label>
+        <label><input type="radio" name="q1" value="d">Desde el historial de pedidos recientes</label>
       </div>
 
       <div class="question">
         <h3>2. ¿Qué puedes hacer cuando tengas alta demanda en tu local?</h3>
-        <label><input type="radio" name="q2" value="a">Cerrar por completo el día</label>
-        <label><input type="radio" name="q2" value="b">Marcarte como ocupado agregando minutos al tiempo de preparación</label>
-        <label><input type="radio" name="q2" value="c">Desactivar todos los productos</label>
-        <label><input type="radio" name="q2" value="d">Esperar que los pedidos se cancelen solos</label>
+        <label><input type="radio" name="q2" value="a">Cerrar por completo el local durante el día</label>
+        <label><input type="radio" name="q2" value="b">Esperar que los pedidos se cancelen automáticamente</label>
+        <label><input type="radio" name="q2" value="c">Desactivar todos los productos temporalmente</label>
+        <label><input type="radio" name="q2" value="d">Marcarte como ocupado agregando minutos al tiempo de preparación</label>
       </div>
 
       <div class="question">
         <h3>3. ¿Qué opciones te permite el botón para cambiar el estado del local?</h3>
-        <label><input type="radio" name="q3" value="a">Abrir, marcar como ocupado o cerrar por 30 minutos o por el resto del día</label>
-        <label><input type="radio" name="q3" value="b">Solo abrir y cerrar el local</label>
-        <label><input type="radio" name="q3" value="c">Cambiar precios y promociones</label>
-        <label><input type="radio" name="q3" value="d">Contactar al soporte</label>
+        <label><input type="radio" name="q3" value="a">Contactar al soporte o enviar mensajes</label>
+        <label><input type="radio" name="q3" value="b">Solo abrir y cerrar el local sin más acciones</label>
+        <label><input type="radio" name="q3" value="c">Abrir, marcar como ocupado, cerrar el local</label>
+        <label><input type="radio" name="q3" value="d">Modificar precios o promociones del menú</label>
       </div>
 
       <div class="question">
         <h3>4. ¿Por qué es útil poder editar el horario de apertura o cierre?</h3>
-        <label><input type="radio" name="q4" value="a">Porque te permite ajustar horarios en días festivos o eventos especiales</label>
-        <label><input type="radio" name="q4" value="b">Para aumentar los tiempos de entrega</label>
-        <label><input type="radio" name="q4" value="c">Para rechazar automáticamente pedidos</label>
-        <label><input type="radio" name="q4" value="d">Porque cambia los precios del menú</label>
+        <label><input type="radio" name="q4" value="a">Para rechazar automáticamente pedidos programados</label>
+        <label><input type="radio" name="q4" value="b">Para aumentar los tiempos de entrega disponibles</label>
+        <label><input type="radio" name="q4" value="c">Porque modifica los precios del menú principal</label>
+        <label><input type="radio" name="q4" value="d">Porque te permite ajustar horarios en días festivos</label>
       </div>
 
       <div class="question">
         <h3>5. ¿Por qué es importante mantener actualizado el horario de tu local?</h3>
-        <label><input type="radio" name="q5" value="a">Porque evita que los motoristas lleguen a un local cerrado y reduce rechazos</label>
-        <label><input type="radio" name="q5" value="b">Porque mejora la velocidad del POS</label>
-        <label><input type="radio" name="q5" value="c">Porque aumenta las ventas automáticamente</label>
-        <label><input type="radio" name="q5" value="d">Porque bloquea pedidos de clientes nuevos</label>
+        <label><input type="radio" name="q5" value="a">Porque mejora la velocidad y rendimiento del POS</label>
+        <label><input type="radio" name="q5" value="b">Porque evita que los motoristas lleguen a un local cerrado y reduce rechazos</label>
+        <label><input type="radio" name="q5" value="c">Porque bloquea pedidos de clientes nuevos automáticamente</label>
+        <label><input type="radio" name="q5" value="d">Porque aumenta las ventas sin esfuerzo adicional</label>
       </div>
 
       <button type="button" class="btn" id="submitBtn" onclick="checkQuiz()">Enviar respuestas</button>
@@ -158,11 +158,11 @@
 
   <script>
     const correctAnswers = {
-      q1: "a", // pantalla principal
-      q2: "b", // marcar ocupado
-      q3: "a", // abrir, ocupado, cerrar
-      q4: "a", // ajustar horarios festivos
-      q5: "a"  // evita que riders lleguen al local cerrado
+      q1: "b", 
+      q2: "d", 
+      q3: "c", 
+      q4: "d", 
+      q5: "b" 
     };
 
     function getAnswer(name) {
