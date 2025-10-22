@@ -108,24 +108,24 @@
       <div class="question">
         <h3>1. ¿Dónde puedes encontrar ayuda o soporte si tienes dudas sobre el sistema?</h3>
         <label><input type="radio" name="q1" value="a">En el centro de soporte con preguntas frecuentes y tutoriales</label>
-        <label><input type="radio" name="q1" value="b">En el menú de pedidos</label>
-        <label><input type="radio" name="q1" value="c">Llamando directamente al motorista</label>
-        <label><input type="radio" name="q1" value="d">Esperando que el sistema se actualice</label>
+        <label><input type="radio" name="q1" value="b">En el menú de pedidos, revisando las opciones disponibles dentro del panel principal</label>
+        <label><input type="radio" name="q1" value="c">lamando directamente al motorista asignado para solicitar información</label>
+        <label><input type="radio" name="q1" value="d">Esperando que el sistema realice una actualización automática</label>
       </div>
 
       <div class="question">
         <h3>2. ¿Qué ofrece el chat de atención personalizada?</h3>
-        <label><input type="radio" name="q2" value="a">Permite contactar con soporte cuando lo necesites</label>
+        <label><input type="radio" name="q2" value="a">Funciona en horarios determinados y brinda asistencia según la disponibilidad</label>
         <label><input type="radio" name="q2" value="b">Solo funciona en horarios limitados</label>
         <label><input type="radio" name="q2" value="c">Envía recordatorios de pedidos</label>
-        <label><input type="radio" name="q2" value="d">Agrega productos al menú automáticamente</label>
+        <label><input type="radio" name="q2" value="d">Permite contactar con soporte cuando lo necesites</label>
       </div>
 
       <div class="question">
         <h3>3. ¿Por qué es útil el centro de soporte para los partners?</h3>
-        <label><input type="radio" name="q3" value="a">Porque permite resolver dudas, aprender y optimizar la gestión del local</label>
+        <label><input type="radio" name="q3" value="a">Porque permite controlar el cierre del local y administrar horarios de atención</label>
         <label><input type="radio" name="q3" value="b">Porque reemplaza a los motoristas</label>
-        <label><input type="radio" name="q3" value="c">Porque permite cerrar el local automáticamente</label>
+        <label><input type="radio" name="q3" value="c">Porque permite resolver dudas, aprender y optimizar la gestión del local</label>
         <label><input type="radio" name="q3" value="d">Porque genera descuentos</label>
       </div>
 
@@ -139,9 +139,9 @@
 
   <script>
     const correctAnswers = {
-      q1: "a", // centro de soporte
-      q2: "a", // chat personalizado
-      q3: "a"  // resolver dudas, aprender y optimizar
+      q1: "a", 
+      q2: "d", 
+      q3: "c"  
     };
 
     function getAnswer(name) {
