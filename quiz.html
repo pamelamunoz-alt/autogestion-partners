@@ -188,13 +188,13 @@
   </div>
 
   <script>
-  // ✅ Clave de respuestas correctas
+  // Clave de respuestas correctas
   const correctAnswers = {
-    q1: "b", // Aceptar pedido
-    q2: "d", // Se cancela automáticamente
-    q3: "a", // Ayuda en línea
-    q4: "c", // Marcar "Listo"
-    q5: "a"  // Pedido de prueba
+    q1: "b", 
+    q2: "d", 
+    q3: "a", 
+    q4: "c", 
+    q5: "a"  
   };
 
   function getAnswer(name) {
@@ -207,7 +207,7 @@
     const answers = {};
     let missing = [];
 
-    // Leer respuestas una por una, sin RadioNodeList.value
+    // Leer respuestas una por una
     for (const k of keys) {
       const v = getAnswer(k);
       if (v === null) missing.push(k);
@@ -237,7 +237,6 @@
     const submitBtn = document.getElementById("submitBtn");
 
     if (wrong.length) {
-      // Texto bonito con qué preguntas estuvieron mal (1-indexadas)
       const wrongList = wrong.map(k => Number(k.slice(1))).sort((a,b)=>a-b).join(", ");
       result.textContent = `Tu puntaje: ${score} / ${total} — Revisa las preguntas: ${wrongList}.`;
       nextBtn.style.display = "none";
@@ -250,7 +249,7 @@
       nextBtn.style.animation = "fadeIn 0.8s ease forwards";
     }
 
-    // Guardar score (por si lo usas después)
+    // Guardar score
     localStorage.setItem("quiz1_score", score);
   }
 </script>
