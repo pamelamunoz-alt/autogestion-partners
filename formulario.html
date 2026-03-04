@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro de finalización | PedidosYa Partners</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --rosa: #FA0050;
@@ -61,10 +62,41 @@
     input {
       width: 100%;
       padding: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 5px;
       border-radius: 10px;
       border: 1px solid #ccc;
       font-family: "Poppins", sans-serif;
+    }
+
+    /* AUTOCOMPLETE */
+    .autocomplete-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    #autocomplete-list {
+      position: absolute;
+      top: 48px;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      max-height: 180px;
+      overflow-y: auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      z-index: 9999;
+      display: none;
+    }
+
+    #autocomplete-list div {
+      padding: 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #autocomplete-list div:hover {
+      background: #ffe3ef;
     }
 
     button {
@@ -78,6 +110,7 @@
       transition: 0.3s;
       width: 100%;
       font-size: 1rem;
+      margin-top: 20px;
     }
 
     button:hover {
@@ -92,51 +125,104 @@
     }
   </style>
 </head>
+
 <body>
 
   <h1>¡Curso completado!</h1>
   <p>Por favor, completa los siguientes datos para registrar tu participación y tu local se estará aperturando durante el día.</p>
 
   <form id="registroForm">
-    <label for="local">Nombre del local (igual como figura en tu POS o sistema de recepción)</label>
-    <input type="text" id="local" name="local" placeholder="Ej: La Pizzería de Juan" required>
+    
+    <label>Nombre del local</label>
+    <div class="autocomplete-wrapper">
+      <input type="text" id="local" name="local" placeholder="Escribe el nombre del local..." required autocomplete="off">
+      <div id="autocomplete-list"></div>
+    </div>
 
-    <label for="nombre">Nombre del participante</label>
-    <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+    <label>Nombre del participante</label>
+    <input type="text" id="nombre" name="nombre" required>
 
-    <label for="telefono">Número de teléfono</label>
-    <input type="tel" id="telefono" name="telefono" placeholder="Ej: 55555555" required pattern="[0-9]{4}[0-9]{4}">
+    <label>Número de teléfono</label>
+    <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{8}">
 
     <button type="submit">Enviar registro</button>
     <div id="mensaje"></div>
+
   </form>
 
-  <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxPYGMxSGJbfzCtAvDbqLXTAZusxpF4KUxfdKJ6txoPAbYqL141jfaNLseMtZY1DEZoqg/exec";
-    const form = document.getElementById("registroForm");
-    const mensaje = document.getElementById("mensaje");
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwPPOYTOCG5UFx_yW7OzeyWfrT4MfdY5GaWVMcKchm04N2xbbAwN60PjAd0Gl7nLlJa/exec";
 
-    form.addEventListener("submit", e => {  
-      e.preventDefault();
-      mensaje.textContent = "Enviando registro...";
-      mensaje.style.color = "#FA0050";
+  const form = document.getElementById("registroForm");
+  const mensaje = document.getElementById("mensaje");
+  const localInput = document.getElementById("local");
+  const list = document.getElementById("autocomplete-list");
 
-      fetch(scriptURL, { method: "POST", body: new FormData(form) })
-        .then(response => {
-          mensaje.textContent = "Registro enviado con éxito. ¡Gracias por completar el curso!";
-          mensaje.style.color = "green";
-          form.reset();
-        })
-        .catch(error => {
-          mensaje.textContent = "Ocurrió un error al enviar el registro.";
-          mensaje.style.color = "red";
-        });
+  let partners = [];
+
+  // Cargar lista desde Apps Script
+  fetch(`${scriptURL}?action=getPartners`)
+    .then(res => res.json())
+    .then(data => {
+      partners = data.partners || [];
     });
-  </script>
+
+  // Autocomplete
+  localInput.addEventListener("input", () => {
+    const val = localInput.value.toLowerCase();
+    list.innerHTML = "";
+    if (val.length < 2) {
+      list.style.display = "none";
+      return;
+    }
+
+    const matches = partners
+      .filter(p => p.toLowerCase().includes(val))
+      .slice(0, 12);
+
+    if (!matches.length) {
+      list.style.display = "none";
+      return;
+    }
+
+    matches.forEach(p => {
+      const div = document.createElement("div");
+      div.textContent = p;
+      div.onclick = () => {
+        localInput.value = p;
+        list.style.display = "none";
+      };
+      list.appendChild(div);
+    });
+
+    list.style.display = "block";
+  });
+
+  // Cerrar si se hace click fuera
+  document.addEventListener("click", e => {
+    if (!e.target.closest(".autocomplete-wrapper")) {
+      list.style.display = "none";
+    }
+  });
+
+  // Submit
+  form.addEventListener("submit", e => {  
+    e.preventDefault();
+    mensaje.textContent = "Enviando registro...";
+    mensaje.style.color = "#FA0050";
+
+    fetch(scriptURL, { method: "POST", body: new FormData(form) })
+      .then(() => {
+        mensaje.textContent = "Registro enviado con éxito. ¡Gracias por completar el curso!";
+        mensaje.style.color = "green";
+        form.reset();
+      })
+      .catch(() => {
+        mensaje.textContent = "Ocurrió un error al enviar el registro.";
+        mensaje.style.color = "red";
+      });
+  });
+</script>
 
 </body>
 </html>
-
-
-
-
